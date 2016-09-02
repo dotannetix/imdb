@@ -10,9 +10,16 @@
 	</head>
 	<body>
 			<div ng-controller="gallery">
-				
-				<div>{{myActors}}</div>
-				<p></p>
+				Search:
+				<input ng-model="query"  />
+				<hr>
+				<button ng-click="sort('up')">Up</button>|<button ng-click="sort('down')">Down</button>
+				<div ng-repeat="actor in myActors |filter:{name:query} | orderBy:upDown" class="actor-box">
+					<img ng-src="img/{{actor.img}}" width=200 height=250 >
+					<a ng-href="{{actor.link}}" target="_blank">{{actor.name}}</a>
+					
+					<hr>
+				</div>
 				
 			</div>
 			
