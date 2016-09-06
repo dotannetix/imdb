@@ -1,8 +1,13 @@
 var imdb = angular.module("imdb", []);
 imdb.controller("gallery", gallery)
 
-function gallery($scope) {
+function gallery($scope, $http) {
 	$scope.imgFolder = "img";
+	$scope.getData = function() {
+		$http.get("data/employees.json").success(function(response) {
+			$scope.employees = response.employees;
+		});
+	}
 	var actors = [{
 		name : 'Cameron Diaz',
 		link : 'http://www.imdb.com/name/nm0000139/',
@@ -54,9 +59,9 @@ function gallery($scope) {
 	}];
 	$scope.sort = function(dir) {
 		if (dir == 'up') {
-          $scope.upDown='name'
+			$scope.upDown = 'name'
 		} else {
- 			 $scope.upDown='-name'
+			$scope.upDown = '-name'
 		};
 	}
 	$scope.myActors = actors;
