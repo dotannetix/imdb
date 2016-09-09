@@ -6,30 +6,31 @@
 		<title>IMDB</title>
 		<link href="css/style.css" rel="stylesheet" />
 		<script src="js/angular.js"></script>
+		<!--app-->
 		<script src="app/imdb.js"></script>
+		
+		<!--controllers-->
+		<script src="app/controllers/searchBox.js"></script>
+		
+		<!--services-->
+		<script src="app/Services/message.js"></script>
 	</head>
 	<body>
 	 
-			<div ng-controller="gallery">
-				 <button ng-click='getData()'>Get Data ! !</button>
-				<div ng-repeat="e in employees">
-					{{e.firstName}}
-				</div>
-				Search:
-				<input ng-model="query"  />
-				<hr>
-				<button ng-click="sort('up')">Up</button>|<button ng-click="sort('down')">Down</button>
-				<div ng-repeat="actor in myActors |filter:{name:query} | orderBy:upDown" class="actor-box">
-					<img ng-src="img/{{actor.img}}" width=200 height=250 >
-					<a ng-href="{{actor.link}}" target="_blank">{{actor.name}}</a>
-					
+			<div ng-controller="searchBox">
+				<input ng-model='searchName'ng-change="getActors()" />
+				
+				<!-- <button ng-click='getActors()'>Search...</button> -->
+				<div ng-repeat="r in results">
+					ID:{{r.id}}
+					<br>
+					Name:{{r.name}}
 					<hr>
 				</div>
 				
 			</div>
 			
 			
-
 	</body>
 </html>
 
